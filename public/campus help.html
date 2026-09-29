@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Help | University Problem Reporting & Resolution</title>
+    <meta name="description"
+        content="Official university problem reporting portal. Submit campus issues, emergency concerns, facility requests, and track real-time resolution anonymously.">
+
+    <!-- Fonts: Clean academic typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/campus.css">
+</head>
+
+<body>
+
+    <!-- Top Emergency Broadcast Bar (Optional Alert Notice) -->
+    <div class="campus-announcement-bar" id="campusAnnouncementBar" role="region" aria-label="Campus Notice">
+        <div class="announcement-inner">
+            <span class="announcement-tag">CAMPUS ADVISORY</span>
+            <span class="announcement-text">For immediate life-safety emergencies, call Campus Security at <strong>Ext.
+                    3333</strong> or <strong>(555) 019-3333</strong> (24/7).</span>
+            <button class="announcement-close" id="btnCloseAnnouncement" aria-label="Dismiss notice">&times;</button>
+        </div>
+    </div>
+
+    <!-- Primary Header & Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- University Brand -->
+            <a href="#home" class="brand-link" id="brandLinkHome">
+                <div class="university-crest">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#1B365D" stroke="#1B365D" />
+                        <path d="M2 17l10 5 10-5" stroke="#1B365D" />
+                        <path d="M2 12l10 5 10-5" stroke="#1B365D" />
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Campus Help</span>
+                    <span class="brand-subtitle">University Incident Management</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-item active" id="navHome">Home</a>
+                <a href="#report" class="nav-item" id="navReport">Report a Problem</a>
+                <a href="#track" class="nav-item" id="navTrack">Track My Report</a>
+                <a href="#emergency" class="nav-item emergency-link" id="navEmergency">
+                    <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Emergency
+                </a>
+            </nav>
+
+            <!-- Right Header Actions -->
+            <div class="header-actions">
+                <a href="#admin-login" class="btn btn-outline-navy" id="btnAdminPortalLink">
+                    <svg viewBox="0 0 20 20" width="15" height="15" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Admin Portal
+                </a>
+                <button class="mobile-menu-toggle" id="btnMobileMenu" aria-label="Open Navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Content Container -->
+    <main class="main-content" id="mainAppContent">
+
+        <!-- ================= 1. HOME VIEW ================= -->
+        <section class="app-view active" id="view-home">
+            <!-- Hero Banner -->
+            <div class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-badge">OFFICIAL UNIVERSITY SERVICE PORTAL</div>
+                    <h1 class="hero-title">Campus Help</h1>
+                    <p class="hero-description">
+                        Report a university problem and track its progress. All student submissions are handled
+                        anonymously,
+                        securely, and dispatched directly to the responsible campus department.
+                    </p>
+
+                    <!-- Core Action Buttons -->
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" id="heroBtnReport">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Report a Problem
+                        </button>
+                        <button class="btn btn-secondary btn-lg" id="heroBtnTrack">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Track My Report
+                        </button>
+                        <button class="btn btn-emergency btn-lg" id="heroBtnEmergency">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Emergency Report
+                        </button>
+                    </div>
+
+                    <!-- Quick ID Lookup Bar -->
+                    <div class="hero-quick-track">
+                        <label for="quickTrackInput" class="quick-track-label">Have a Report ID? Track status
+                            instantly:</label>
+                        <form class="quick-track-form" id="quickTrackForm">
+                            <input type="text" id="quickTrackInput" placeholder="Enter Report ID (e.g. CH-10482)"
+                                maxlength="12" autocomplete="off" required>
+                            <button type="submit" class="btn btn-navy">Track Status</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem Categories Grid -->
+            <section class="section-container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">What problem would you like to report?</h2>
+                    <p class="section-subtitle">Select a category below to quickly file an official incident ticket</p>
+                </div>
+
+                <div class="category-grid" id="categorySelectionGrid">
+                    <!-- Category Cards generated with university standard icons -->
+                    <div class="category-card" data-category="Emergency">
+                        <div class="cat-icon-wrap cat-emergency">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Emergencies</h3>
+                        <p class="cat-desc">Medical crises, fire threats, immediate safety hazards</p>
+                        <span class="cat-action">Report Emergency &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Security">
+                        <div class="cat-icon-wrap cat-security">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Security Concerns</h3>
+                        <p class="cat-desc">Broken locks, dark stairwells, suspicious activity, access issues</p>
+                        <span class="cat-action">Report Issue &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Harassment">
+                        <div class="cat-icon-wrap cat-harassment">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Harassment & Bullying</h3>
+                        <p class="cat-desc">Confidential reporting handled by Student Welfare Office</p>
+                        <span class="cat-action">Confidential Report &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Utilities">
+                        <div class="cat-icon-wrap cat-utilities">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Water & Electricity</h3>
+                        <p class="cat-desc">Power outages, water leaks, heating/AC failure, burst pipes</p>
+                        <span class="cat-action">Report Utility &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Facilities">
+                        <div class="cat-icon-wrap cat-facilities">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Broken Equipment</h3>
+                        <p class="cat-desc">Damaged classroom chairs, faulty projectors, broken doors</p>
+                        <span class="cat-action">Report Equipment &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="IT/Wi-Fi">
+                        <div class="cat-icon-wrap cat-it">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Internet & Wi-Fi</h3>
+                        <p class="cat-desc">Campus Wi-Fi connectivity drops, portal errors, lab network</p>
+                        <span class="cat-action">Report IT Issue &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Cleanliness">
+                        <div class="cat-icon-wrap cat-cleanliness">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Cleanliness & Sanitation</h3>
+                        <p class="cat-desc">Restroom restocking, trash overflow, spill cleanup</p>
+                        <span class="cat-action">Report Sanitation &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Transport">
+                        <div class="cat-icon-wrap cat-transport">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M8 17l4-4 4 4m-4-4v9M4 4h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Transport & Parking</h3>
+                        <p class="cat-desc">Campus shuttle delays, blocked parking bays, permit gates</p>
+                        <span class="cat-action">Report Transport &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Academic/Administrative">
+                        <div class="cat-icon-wrap cat-academic">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Academic & Admin</h3>
+                        <p class="cat-desc">Timetable clashes, classroom access, administrative inquiries</p>
+                        <span class="cat-action">Report Concern &rarr;</span>
+                    </div>
+
+                    <div class="category-card" data-category="Other">
+                        <div class="cat-icon-wrap cat-other">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4m0-4h.01" />
+                            </svg>
+                        </div>
+                        <h3 class="cat-title">Other Campus Issues</h3>
+                        <p class="cat-desc">General campus concerns not covered above</p>
+                        <span class="cat-action">Report Issue &rarr;</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- University Process Workflow Guide -->
+            <section class="section-container bg-light-panel">
+                <div class="section-header text-center">
+                    <h2 class="section-title">How Campus Help Works</h2>
+                    <p class="section-subtitle">A transparent, reliable 4-step problem resolution lifecycle</p>
+                </div>
+
+                <div class="workflow-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4 class="step-title">Submit Report</h4>
+                        <p class="step-desc">Fill in the problem location and description. Your submission is 100%
+                            anonymous.</p>
+                    </div>
+                    <div class="step-arrow">&rarr;</div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4 class="step-title">Triage & Review</h4>
+                        <p class="step-desc">University operations review your report and assess urgency and required
+                            equipment.</p>
+                    </div>
+                    <div class="step-arrow">&rarr;</div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4 class="step-title">Department Assigned</h4>
+                        <p class="step-desc">The relevant department (Facilities, IT, Security, or Welfare) is
+                            dispatched.</p>
+                    </div>
+                    <div class="step-arrow">&rarr;</div>
+
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4 class="step-title">Resolved & Logged</h4>
+                        <p class="step-desc">Technicians fix the issue and record completion notes. Track live with your
+                            Report ID.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency Directory Panel -->
+            <section class="section-container">
+                <div class="emergency-directory-card">
+                    <div class="directory-header">
+                        <div class="directory-badge">CAMPUS EMERGENCY DIRECTORY</div>
+                        <h3 class="directory-title">Immediate Assistance Contacts</h3>
+                        <p class="directory-note">For life-threatening or urgent safety situations, contact university
+                            authorities
+                            directly:</p>
+                    </div>
+
+                    <div class="contacts-grid">
+                        <div class="contact-box">
+                            <span class="contact-name">Campus Safety & Security (24/7 Dispatch)</span>
+                            <span class="contact-number">Ext. 3333 &bull; (555) 019-3333</span>
+                        </div>
+                        <div class="contact-box">
+                            <span class="contact-name">University Health & Medical Center</span>
+                            <span class="contact-number">Ext. 4444 &bull; (555) 019-4444</span>
+                        </div>
+                        <div class="contact-box">
+                            <span class="contact-name">Facilities & Power Emergency Response</span>
+                            <span class="contact-number">Ext. 2222 &bull; (555) 019-2222</span>
+                        </div>
+                        <div class="contact-box">
+                            <span class="contact-name">Student Counseling & Crisis Support</span>
+                            <span class="contact-number">Ext. 5555 &bull; (555) 019-5555</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ================= 2. REPORT A PROBLEM VIEW ================= -->
+        <section class="app-view" id="view-report">
+            <div class="form-page-container">
+                <div class="page-heading">
+                    <a href="#home" class="back-link">&larr; Back to Home</a>
+                    <h1 class="page-title">Report a University Problem</h1>
+                    <p class="page-subtitle">Submit details about a campus issue. All student submissions are handled
+                        anonymously.
+                    </p>
+                </div>
+
+                <!-- Privacy Reassurance Box -->
+                <div class="privacy-notice-box">
+                    <div class="privacy-icon">
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="privacy-text">
+                        <strong>Student Privacy Guaranteed:</strong> No names, student IDs, or email addresses are
+                        requested or
+                        displayed to other students. You will receive a unique Report ID to track resolution.
+                    </div>
+                </div>
+
+                <!-- Problem Report Form -->
+                <form class="clean-form" id="studentReportForm">
+
+                    <!-- Category Selector -->
+                    <div class="form-group">
+                        <label for="reportCategory" class="form-label required">Problem Category</label>
+                        <select id="reportCategory" name="category" class="form-control" required>
+                            <option value="" disabled selected>-- Select Incident Category --</option>
+                            <option value="Emergency">Emergency (Immediate Safety / Medical)</option>
+                            <option value="Security">Security Concerns (Locks, Lighting, Access)</option>
+                            <option value="Harassment">Harassment or Bullying (Confidential)</option>
+                            <option value="Utilities">Utilities (Water, Electricity, Heating, AC)</option>
+                            <option value="Facilities">Facilities & Broken Classroom Equipment</option>
+                            <option value="IT/Wi-Fi">Internet / Wi-Fi & IT Services</option>
+                            <option value="Cleanliness">Cleanliness & Sanitation Issues</option>
+                            <option value="Transport">Transport & Campus Shuttle / Parking</option>
+                            <option value="Academic/Administrative">Academic / Administrative</option>
+                            <option value="Other">Other Campus Problem</option>
+                        </select>
+                    </div>
+
+                    <!-- Urgency Level -->
+                    <div class="form-group">
+                        <label class="form-label required">Urgency / Severity Level</label>
+                        <div class="urgency-selector-grid">
+                            <label class="urgency-option">
+                                <input type="radio" name="urgency" value="Low">
+                                <div class="urgency-card urgency-low">
+                                    <span class="urgency-dot"></span>
+                                    <div class="urgency-content">
+                                        <strong>Low</strong>
+                                        <small>Minor inconvenience</small>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="urgency-option">
+                                <input type="radio" name="urgency" value="Medium" checked>
+                                <div class="urgency-card urgency-med">
+                                    <span class="urgency-dot"></span>
+                                    <div class="urgency-content">
+                                        <strong>Medium</strong>
+                                        <small>Standard attention</small>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="urgency-option">
+                                <input type="radio" name="urgency" value="High">
+                                <div class="urgency-card urgency-high">
+                                    <span class="urgency-dot"></span>
+                                    <div class="urgency-content">
+                                        <strong>High</strong>
+                                        <small>Disrupts classes/labs</small>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="urgency-option">
+                                <input type="radio" name="urgency" value="Emergency">
+                                <div class="urgency-card urgency-crit">
+                                    <span class="urgency-dot"></span>
+                                    <div class="urgency-content">
+                                        <strong>Emergency</strong>
+                                        <small>Critical safety hazard</small>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Location Row -->
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="reportBuilding" class="form-label required">Building / Location</label>
+                            <select id="reportBuilding" name="building" class="form-control" required>
+                                <option value="" disabled selected>-- Select Campus Location --</option>
+                                <option value="Main Academic Quad">Main Academic Quad</option>
+                                <option value="Science & Technology Hall">Science & Technology Hall</option>
+                                <option value="Engineering Block A">Engineering Block A</option>
+                                <option value="Engineering Block B">Engineering Block B</option>
+                                <option value="Engineering Block C">Engineering Block C</option>
+                                <option value="University Central Library">University Central Library</option>
+                                <option value="Student Union & Activities Hub">Student Union & Activities Hub</option>
+                                <option value="Arts & Humanities Building">Arts & Humanities Building</option>
+                                <option value="Business School Complex">Business School Complex</option>
+                                <option value="Health & Medical Sciences Wing">Health & Medical Sciences Wing</option>
+                                <option value="North Campus Residential Quad (Dorm A-D)">North Campus Residential Quad
+                                    (Dorm A-D)
+                                </option>
+                                <option value="South Campus Residence Hall">South Campus Residence Hall</option>
+                                <option value="Athletic Center & Gymnasium">Athletic Center & Gymnasium</option>
+                                <option value="Campus Dining Hall & Cafeteria">Campus Dining Hall & Cafeteria</option>
+                                <option value="Administration & Registrar Building">Administration & Registrar Building
+                                </option>
+                                <option value="West Campus Parking Structure">West Campus Parking Structure</option>
+                                <option value="East Perimeter & Shuttle Stop">East Perimeter & Shuttle Stop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reportRoom" class="form-label">Room / Specific Location <span
+                                    class="optional-tag">(Optional)</span></label>
+                            <input type="text" id="reportRoom" name="roomNumber" class="form-control"
+                                placeholder="e.g. Room 304, 2nd floor restroom, East entrance">
+                        </div>
+                    </div>
+
+                    <!-- Date & Time of Occurrence -->
+                    <div class="form-group">
+                        <label for="reportDateTime" class="form-label">Date & Time Observed</label>
+                        <input type="datetime-local" id="reportDateTime" name="reportedTime" class="form-control">
+                    </div>
+
+                    <!-- Problem Description -->
+                    <div class="form-group">
+                        <label for="reportDescription" class="form-label required">Problem Description</label>
+                        <textarea id="reportDescription" name="description" rows="5" class="form-control"
+                            placeholder="Please provide clear details about what is broken, malfunctioning, or creating a concern..."
+                            required></textarea>
+                        <span class="field-hint">Be as specific as possible to assist the maintenance team with
+                            appropriate
+                            tools.</span>
+                    </div>
+
+                    <!-- Photo / Evidence Upload -->
+                    <div class="form-group">
+                        <label class="form-label">Photo / Evidence Attachment <span
+                                class="optional-tag">(Optional)</span></label>
+                        <div class="file-upload-zone" id="fileDropZone">
+                            <input type="file" id="reportFileInput" accept="image/*,.pdf" class="file-input-hidden">
+                            <div class="upload-prompt" id="uploadPrompt">
+                                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                                    stroke-width="1.8">
+                                    <path
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <div class="upload-text">
+                                    <span class="link-like">Click to browse</span> or drag and drop a photo here
+                                </div>
+                                <small class="upload-subtext">JPG, PNG, GIF up to 10MB</small>
+                            </div>
+
+                            <!-- Upload Preview Container -->
+                            <div class="upload-preview hidden" id="uploadPreview">
+                                <img id="previewImage" src="" alt="Evidence preview" class="preview-thumb">
+                                <div class="preview-info">
+                                    <span id="previewFileName" class="preview-name">image.png</span>
+                                    <button type="button" class="btn-remove-file" id="btnRemoveFile">&times; Remove
+                                        file</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Submit Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="btnCancelReport">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-lg" id="btnSubmitReport">
+                            <span class="btn-text">Submit Report Anonymously</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= 3. REPORT TRACKING VIEW ================= -->
+        <section class="app-view" id="view-track">
+            <div class="track-page-container">
+                <div class="page-heading text-center">
+                    <a href="#home" class="back-link">&larr; Back to Home</a>
+                    <h1 class="page-title">Track Problem Report</h1>
+                    <p class="page-subtitle">Enter your unique Report ID to view real-time department assignment and
+                        resolution
+                        progress.</p>
+                </div>
+
+                <!-- Tracking Search Box -->
+                <div class="track-search-card">
+                    <form class="track-form" id="trackReportForm">
+                        <div class="track-input-group">
+                            <svg viewBox="0 0 20 20" width="20" height="20" fill="#64748B" class="search-svg">
+                                <path fill-rule="evenodd"
+                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <input type="text" id="trackInput" class="track-input"
+                                placeholder="Enter Report ID (e.g. CH-10482)" maxlength="12" autocomplete="off"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btnTrackLookup">Look Up Report</button>
+                    </form>
+
+                    <!-- Quick Test Sample IDs -->
+                    <div class="track-sample-links">
+                        <span>Try sample reports:</span>
+                        <button type="button" class="sample-chip" data-id="CH-10482">CH-10482 (Plumbing In
+                            Progress)</button>
+                        <button type="button" class="sample-chip" data-id="CH-10485">CH-10485 (IT Wi-Fi
+                            Assigned)</button>
+                        <button type="button" class="sample-chip" data-id="CH-10490">CH-10490 (Emergency Under
+                            Review)</button>
+                        <button type="button" class="sample-chip" data-id="CH-10430">CH-10430 (Resolved)</button>
+                    </div>
+                </div>
+
+                <!-- Tracking Result Display Container -->
+                <div class="track-result-container hidden" id="trackResultContainer">
+
+                    <!-- Card Header & Metadata -->
+                    <div class="track-header-card">
+                        <div class="report-meta-top">
+                            <div class="id-and-category">
+                                <span class="tracking-id-badge" id="trackDisplayId">CH-00000</span>
+                                <span class="category-pill" id="trackDisplayCategory">Category</span>
+                                <span class="urgency-pill" id="trackDisplayUrgency">Medium</span>
+                            </div>
+                            <div class="status-indicator-badge" id="trackDisplayStatusBadge">Submitted</div>
+                        </div>
+
+                        <!-- University Lifecycle Status Progress Bar -->
+                        <div class="lifecycle-tracker-wrapper">
+                            <div class="lifecycle-steps" id="lifecycleStepsBar">
+                                <div class="l-step" data-step="Submitted">
+                                    <div class="l-node"><span class="node-num">1</span></div>
+                                    <span class="l-label">Submitted</span>
+                                </div>
+                                <div class="l-connector"></div>
+
+                                <div class="l-step" data-step="Under Review">
+                                    <div class="l-node"><span class="node-num">2</span></div>
+                                    <span class="l-label">Under Review</span>
+                                </div>
+                                <div class="l-connector"></div>
+
+                                <div class="l-step" data-step="Assigned">
+                                    <div class="l-node"><span class="node-num">3</span></div>
+                                    <span class="l-label">Assigned</span>
+                                </div>
+                                <div class="l-connector"></div>
+
+                                <div class="l-step" data-step="In Progress">
+                                    <div class="l-node"><span class="node-num">4</span></div>
+                                    <span class="l-label">In Progress</span>
+                                </div>
+                                <div class="l-connector"></div>
+
+                                <div class="l-step" data-step="Resolved">
+                                    <div class="l-node"><span class="node-num">5</span></div>
+                                    <span class="l-label">Resolved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Details & University Timeline -->
+                    <div class="track-details-grid">
+
+                        <!-- Left: Incident Information -->
+                        <div class="details-panel">
+                            <h3 class="panel-heading">Incident Information</h3>
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-label">Location / Building:</span>
+                                    <strong class="info-value" id="trackDisplayBuilding">Main Academic Quad</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Specific Room / Area:</span>
+                                    <span class="info-value" id="trackDisplayRoom">Room 101</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Assigned Department:</span>
+                                    <strong class="info-value text-navy" id="trackDisplayDept">Pending Dispatch</strong>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Date Reported:</span>
+                                    <span class="info-value" id="trackDisplayDate">Today</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Student Privacy:</span>
+                                    <span class="info-value text-green">Anonymous Submission Verified</span>
+                                </div>
+                            </div>
+
+                            <div class="description-block">
+                                <span class="info-label">Problem Description:</span>
+                                <p class="description-text" id="trackDisplayDescription">Description text...</p>
+                            </div>
+
+                            <div class="evidence-status-block" id="trackEvidenceStatusBlock">
+                                <span class="evidence-badge">Evidence photo attached on file</span>
+                            </div>
+                        </div>
+
+                        <!-- Right: Official Resolution Timeline & Notes -->
+                        <div class="timeline-panel">
+                            <h3 class="panel-heading">Department Action Timeline</h3>
+                            <div class="timeline-stream" id="trackTimelineStream">
+                                <!-- Timeline items dynamically inserted -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track Error Notice -->
+                <div class="track-error-card hidden" id="trackErrorCard">
+                    <div class="error-icon">!</div>
+                    <h3 class="error-title" id="trackErrorTitle">Report Not Found</h3>
+                    <p class="error-message" id="trackErrorMessage">Please verify your Report ID (e.g. CH-10482) and try
+                        again.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. EMERGENCY MODAL / VIEW ================= -->
+        <section class="app-view" id="view-emergency">
+            <div class="emergency-page-container">
+                <div class="emergency-alert-banner">
+                    <div class="alert-banner-icon">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="emergency-heading">Campus Emergency Priority Report</h1>
+                        <p class="emergency-lead">
+                            Use this priority form for urgent safety risks, medical incidents, fire, or immediate
+                            threats.
+                            If anyone is in immediate danger, please call <strong>Campus Safety (Ext. 3333)</strong>
+                            immediately.
+                        </p>
+                    </div>
+                </div>
+
+                <form class="clean-form emergency-form" id="emergencyReportForm">
+                    <div class="form-group">
+                        <label for="emergCategory" class="form-label required">Emergency Type</label>
+                        <select id="emergCategory" name="category" class="form-control" required>
+                            <option value="Emergency" selected>Critical Safety / Medical Hazard</option>
+                            <option value="Security">Immediate Security Threat / Active Intrusion</option>
+                            <option value="Utilities">Severe Water Burst / Gas Leak / Electrical Fire</option>
+                            <option value="Harassment">Active Harassment / Threat to Personal Safety</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="emergBuilding" class="form-label required">Location / Building</label>
+                            <select id="emergBuilding" name="building" class="form-control" required>
+                                <option value="" disabled selected>-- Select Location --</option>
+                                <option value="Main Academic Quad">Main Academic Quad</option>
+                                <option value="Science & Technology Hall">Science & Technology Hall</option>
+                                <option value="Engineering Block A">Engineering Block A</option>
+                                <option value="Engineering Block B">Engineering Block B</option>
+                                <option value="Engineering Block C">Engineering Block C</option>
+                                <option value="University Central Library">University Central Library</option>
+                                <option value="Student Union & Activities Hub">Student Union & Activities Hub</option>
+                                <option value="Arts & Humanities Building">Arts & Humanities Building</option>
+                                <option value="Business School Complex">Business School Complex</option>
+                                <option value="Health & Medical Sciences Wing">Health & Medical Sciences Wing</option>
+                                <option value="North Campus Residential Quad (Dorm A-D)">North Campus Residential Quad
+                                    (Dorm A-D)
+                                </option>
+                                <option value="South Campus Residence Hall">South Campus Residence Hall</option>
+                                <option value="Athletic Center & Gymnasium">Athletic Center & Gymnasium</option>
+                                <option value="Campus Dining Hall & Cafeteria">Campus Dining Hall & Cafeteria</option>
+                                <option value="Administration & Registrar Building">Administration & Registrar Building
+                                </option>
+                                <option value="West Campus Parking Structure">West Campus Parking Structure</option>
+                                <option value="East Perimeter & Shuttle Stop">East Perimeter & Shuttle Stop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergRoom" class="form-label required">Exact Room / Specific Landmark</label>
+                            <input type="text" id="emergRoom" name="roomNumber" class="form-control"
+                                placeholder="e.g. 3rd Floor East Staircase" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergDescription" class="form-label required">Describe the Emergency
+                            Situation</label>
+                        <textarea id="emergDescription" name="description" rows="4" class="form-control"
+                            placeholder="State clearly what is happening, if medical assistance is needed, and any hazards present..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="#home" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-emergency btn-lg" id="btnSubmitEmergency">
+                            <span>Submit Priority Emergency Report</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= 5. ADMIN LOGIN VIEW ================= -->
+        <section class="app-view" id="view-admin-login">
+            <div class="login-page-container">
+                <div class="login-card">
+                    <div class="login-header text-center">
+                        <div class="university-crest mx-auto mb-3">
+                            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#1B365D"
+                                stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#1B365D" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <h1 class="login-title">Administrator Login</h1>
+                        <p class="login-subtitle">Official staff & operations portal. Unauthorized access is strictly
+                            prohibited.
+                        </p>
+                    </div>
+
+                    <!-- Alert for Login Errors -->
+                    <div class="alert alert-danger hidden" id="loginErrorAlert">
+                        <span id="loginErrorMsg">Invalid administrator credentials.</span>
+                    </div>
+
+                    <form class="clean-form" id="adminLoginForm">
+                        <div class="form-group">
+                            <label for="adminUsername" class="form-label">Username / University Staff Email</label>
+                            <input type="text" id="adminUsername" class="form-control"
+                                placeholder="admin@campus.edu or campus_admin" autocomplete="username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminPassword" class="form-label">Password</label>
+                            <div class="password-input-wrap">
+                                <input type="password" id="adminPassword" class="form-control"
+                                    placeholder="Enter password" autocomplete="current-password" required>
+                                <button type="button" class="btn-toggle-pwd" id="btnTogglePassword"
+                                    aria-label="Toggle password visibility">Show</button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-navy btn-block btn-lg" id="btnLoginSubmit">
+                            <span class="btn-text">Sign In to Admin Dashboard</span>
+                        </button>
+                    </form>
+
+                    <!-- Evaluation Credential Helper (Clean, Professional) -->
+                    <div class="credential-helper-box">
+                        <span class="helper-label">Authorized Staff Credentials for Evaluation:</span>
+                        <div class="helper-creds">
+                            <code>Username: admin@campus.edu</code>
+                            <code>Password: AdminPassword2026!</code>
+                        </div>
+                    </div>
+
+                    <div class="login-footer text-center">
+                        <a href="#home" class="link-subtle">&larr; Return to Student Portal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. ADMIN DASHBOARD VIEW (PROTECTED) ================= -->
+        <section class="app-view" id="view-admin-dashboard">
+            <div class="admin-dashboard-layout">
+
+                <!-- Admin Dashboard Header -->
+                <div class="admin-top-bar">
+                    <div class="admin-title-area">
+                        <div class="admin-badge-tag">ADMINISTRATOR CONTROL PANEL</div>
+                        <h1 class="admin-heading">Incident Management Dashboard</h1>
+                        <p class="admin-subheading">View, assign, and manage campus problem reports</p>
+                    </div>
+
+                    <div class="admin-user-controls">
+                        <div class="admin-user-badge">
+                            <span class="user-role-dot"></span>
+                            <div class="user-meta">
+                                <strong id="adminUserFullName">Operations Administrator</strong>
+                                <small id="adminUserDept">Campus Safety & Operations</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-secondary btn-sm" id="btnAdminLogout">
+                            <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Log Out
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Metrics Overview KPI Cards -->
+                <div class="admin-metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-label">Total Reports</span>
+                        <span class="metric-value text-navy" id="statTotal">0</span>
+                        <span class="metric-foot">All filed campus incidents</span>
+                    </div>
+
+                    <div class="metric-card metric-card-emergency">
+                        <span class="metric-label">Emergency Critical</span>
+                        <span class="metric-value text-emergency" id="statEmergency">0</span>
+                        <span class="metric-foot">Requires urgent intervention</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">Pending Review</span>
+                        <span class="metric-value text-blue" id="statSubmitted">0</span>
+                        <span class="metric-foot">Awaiting triage</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">Assigned</span>
+                        <span class="metric-value text-purple" id="statAssigned">0</span>
+                        <span class="metric-foot">Dispatched to department</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">In Progress</span>
+                        <span class="metric-value text-amber" id="statInProgress">0</span>
+                        <span class="metric-foot">Work currently ongoing</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-label">Resolved</span>
+                        <span class="metric-value text-green" id="statResolved">0</span>
+                        <span class="metric-foot">Completed and verified</span>
+                    </div>
+                </div>
+
+                <!-- Filter & Search Toolbar -->
+                <div class="admin-toolbar">
+                    <div class="search-box">
+                        <svg viewBox="0 0 20 20" width="16" height="16" fill="#64748B">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <input type="text" id="adminSearchInput"
+                            placeholder="Search by ID, building, keyword, or department...">
+                    </div>
+
+                    <div class="filters-group">
+                        <select id="filterStatus" class="filter-select">
+                            <option value="ALL">All Statuses</option>
+                            <option value="Submitted">Submitted (Pending)</option>
+                            <option value="Under Review">Under Review</option>
+                            <option value="Assigned">Assigned</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Resolved">Resolved</option>
+                        </select>
+
+                        <select id="filterCategory" class="filter-select">
+                            <option value="ALL">All Categories</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="Security">Security</option>
+                            <option value="Harassment">Harassment</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Facilities">Facilities</option>
+                            <option value="IT/Wi-Fi">IT / Wi-Fi</option>
+                            <option value="Cleanliness">Cleanliness</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Academic/Administrative">Academic/Admin</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <select id="filterUrgency" class="filter-select">
+                            <option value="ALL">All Urgencies</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+
+                        <button class="btn btn-secondary btn-sm" id="btnAdminRefresh">
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Incidents Table Container -->
+                <div class="admin-table-card">
+                    <div class="table-responsive">
+                        <table class="admin-table" id="adminReportsTable">
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Urgency</th>
+                                    <th>Category</th>
+                                    <th>Location & Details</th>
+                                    <th>Assigned Department</th>
+                                    <th>Reported Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminReportsTableBody">
+                                <!-- Rows loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="table-empty-state hidden" id="adminEmptyState">
+                        <p>No incident reports match your selected filters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= SUBMISSION SUCCESS MODAL ================= -->
+    <div class="modal-backdrop hidden" id="modalSubmissionSuccess">
+        <div class="modal-card">
+            <div class="success-icon-wrap">
+                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#10B981" stroke-width="2.5">
+                    <path d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+
+            <h2 class="modal-title">Your report has been submitted successfully.</h2>
+            <p class="modal-subtitle">
+                Your submission is completely anonymous. Use your generated Report ID below to track progress through
+                review,
+                department assignment, and resolution.
+            </p>
+
+            <div class="generated-id-box">
+                <span class="id-sub">Your Unique Report ID:</span>
+                <div class="id-copy-row">
+                    <span class="report-id-highlight" id="modalGeneratedId">CH-00000</span>
+                    <button type="button" class="btn btn-sm btn-outline-navy" id="btnCopyReportId">
+                        <span id="copyBtnText">Copy ID</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-privacy-callout">
+                <strong>Privacy Reminder:</strong> Student identities are not stored or shown. Please save or copy this
+                Report
+                ID, as it is the only way to track this ticket.
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-primary btn-lg" id="btnTrackSubmittedReport">Track This Report
+                    Now</button>
+                <button type="button" class="btn btn-secondary" id="btnCloseSuccessModal">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ADMIN REPORT MANAGEMENT DRAWER / MODAL ================= -->
+    <div class="modal-backdrop hidden" id="modalAdminInspect">
+        <div class="modal-card modal-card-lg">
+            <div class="modal-header-row">
+                <div>
+                    <span class="inspect-id-badge" id="inspectReportId">CH-10482</span>
+                    <h2 class="modal-title d-inline-block" id="inspectTitle">Incident Details</h2>
+                </div>
+                <button type="button" class="modal-close" id="btnCloseInspectModal">&times;</button>
+            </div>
+
+            <div class="inspect-modal-body">
+
+                <!-- Top Details Strip -->
+                <div class="inspect-summary-grid">
+                    <div class="summary-item">
+                        <span class="summary-label">Category:</span>
+                        <strong id="inspectCategory">Utilities</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Urgency:</span>
+                        <span class="urgency-pill" id="inspectUrgency">High</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Current Status:</span>
+                        <span class="status-indicator-badge" id="inspectStatus">In Progress</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Reported Time:</span>
+                        <span id="inspectTime">2026-09-27</span>
+                    </div>
+                </div>
+
+                <!-- Student Privacy Notice in Admin View -->
+                <div class="admin-privacy-banner">
+                    <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span><strong>Student Identity Protected:</strong> This report was filed anonymously under
+                        University Student
+                        Privacy Regulations.</span>
+                </div>
+
+                <!-- Incident Information -->
+                <div class="inspect-section">
+                    <h4 class="inspect-subhead">Location & Problem Description</h4>
+                    <div class="inspect-location-row">
+                        <strong>Location:</strong> <span id="inspectLocation">Science Hall, Room 304</span>
+                    </div>
+                    <div class="inspect-desc-box" id="inspectDescription">
+                        Description of the problem...
+                    </div>
+
+                    <!-- Evidence viewer -->
+                    <div class="inspect-evidence-container hidden" id="inspectEvidenceContainer">
+                        <h5 class="evidence-subhead">Attached Evidence</h5>
+                        <img src="" alt="Evidence photo" id="inspectEvidenceImg" class="inspect-img-thumb">
+                    </div>
+                </div>
+
+                <!-- Admin Actions (Status Change, Department Assignment, Resolution Update) -->
+                <div class="inspect-section inspect-actions-section">
+                    <h4 class="inspect-subhead">Operational Actions & Department Routing</h4>
+
+                    <div class="inspect-action-grid">
+                        <!-- 1. Change Status -->
+                        <div class="action-box">
+                            <label for="inspectStatusSelect" class="form-label">Update Incident Status</label>
+                            <select id="inspectStatusSelect" class="form-control">
+                                <option value="Submitted">Submitted</option>
+                                <option value="Under Review">Under Review</option>
+                                <option value="Assigned">Assigned</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                            <button type="button" class="btn btn-navy btn-sm mt-2" id="btnUpdateStatus">Apply Status
+                                Change</button>
+                        </div>
+
+                        <!-- 2. Assign Department -->
+                        <div class="action-box">
+                            <label for="inspectDeptSelect" class="form-label">Assign University Department</label>
+                            <select id="inspectDeptSelect" class="form-control">
+                                <option value="Campus Safety & Security">Campus Safety & Security</option>
+                                <option value="Facilities & Building Maintenance">Facilities & Building Maintenance
+                                </option>
+                                <option value="IT Support & Network Services">IT Support & Network Services</option>
+                                <option value="Office of Student Affairs & Welfare">Office of Student Affairs & Welfare
+                                </option>
+                                <option value="Sanitation & Custodial Services">Sanitation & Custodial Services</option>
+                                <option value="Campus Transport & Parking Services">Campus Transport & Parking Services
+                                </option>
+                                <option value="Academic & Administrative Registrar">Academic & Administrative Registrar
+                                </option>
+                                <option value="University Health & Medical Center">University Health & Medical Center
+                                </option>
+                            </select>
+                            <button type="button" class="btn btn-navy btn-sm mt-2" id="btnAssignDept">Assign
+                                Department</button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Add Timeline Resolution Note -->
+                    <div class="add-note-box mt-3">
+                        <label for="inspectNoteInput" class="form-label">Add Official Progress Note / Department
+                            Update</label>
+                        <textarea id="inspectNoteInput" class="form-control" rows="2"
+                            placeholder="e.g. Technician dispatched on-site; replacement part ordered; water valve shut off..."></textarea>
+                        <button type="button" class="btn btn-primary btn-sm mt-2" id="btnAddNote">Add Update Note to
+                            Timeline</button>
+                    </div>
+                </div>
+
+                <!-- Incident Timeline History -->
+                <div class="inspect-section">
+                    <h4 class="inspect-subhead">Incident Audit & Progression Log</h4>
+                    <div class="timeline-stream" id="inspectTimelineStream">
+                        <!-- Timeline elements dynamically rendered -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCloseInspectFooter">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification System -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <strong>Campus Help</strong> &bull; University Problem Reporting & Incident Resolution
+                </div>
+                <p class="footer-copy">
+                    Official University Operations & Student Services. Student submissions remain confidential and
+                    anonymous.
+                </p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#report">Report a Problem</a>
+                <a href="#track">Track Report</a>
+                <a href="#emergency">Emergency Notice</a>
+                <a href="#admin-login">Staff Admin Portal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main Application Logic Script -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>

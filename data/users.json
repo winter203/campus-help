@@ -1,0 +1,22 @@
+[
+  {
+    "id": "usr_admin_01",
+    "username": "campus_admin",
+    "email": "admin@campus.edu",
+    "fullName": "University Operations Administrator",
+    "role": "ADMIN",
+    "department": "Campus Safety & Operations",
+    "passwordHash": "fd6f093e2ea503caa4ca9cc8f964fcb4:a22a42444e30d4741a1eee287c18efab17f4d381a1ea9dde2b5611689aca39874f24255f19ad8f849b3d15767e1fab15562b70054ab0aeecba7206e102f8aab7",
+    "createdAt": "2026-09-27T16:33:26.925Z"
+  },
+  {
+    "id": "usr_admin_02",
+    "username": "facilities_lead",
+    "email": "facilities@campus.edu",
+    "fullName": "Facilities Duty Officer",
+    "role": "ADMIN",
+    "department": "Facilities & Building Maintenance",
+    "passwordHash": "f0f3ed2038bf4b2903651ad450c5728e:a85835ca98b227dd120af37d90c4f3dd81803c6ab5b21dda352200828f6598cd37ee21a6871156b65af9c966c4581c1aac2e154cfeb986d887bff345645b7268",
+    "createdAt": "2026-09-27T16:33:27.011Z"
+  }
+]

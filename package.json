@@ -1,0 +1,17 @@
+{
+  "name": "campus-help",
+  "version": "1.0.0",
+  "description": "Campus Help - University Problem Reporting & Incident Resolution System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["university", "incident-management", "problem-reporting"],
+  "author": "University Operations",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
